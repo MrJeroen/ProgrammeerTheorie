@@ -1,5 +1,5 @@
 import csv
-from base import Courses, Students, Lessons
+from base import Courses, Students, Lessons, Room
 
 courses = []
 lessons = []
@@ -8,17 +8,9 @@ students = []
 with open("vakken.csv", "rb") as file1:
     reader_vak = csv.reader(file1, delimiter=",")
     for vakken in reader_vak:
-        # create an array for all the students in one course
-        course_students = []
-        with open("studenten.csv", "rb") as file2:
-            reader_stud = csv.reader(file2, delimiter=",")
-            for student in reader_stud:
-                # is students attened a course add them to the array
-                if vakken[0] in student[3]:
-                    course_students.append(student[2])
         # fill the courses array with courses objects
         courses.append(Courses(vakken[0], vakken[1], vakken[2],
-        vakken[3], vakken[4], vakken[5], course_students))
+        vakken[3], vakken[4], vakken[5], vakken[6]))
 # i = 0
 # for elements in courses:
 #     print courses[i].name
@@ -36,7 +28,7 @@ for elements in courses:
     for wc in range(int(elements.wc)):
         lessons.append(Lessons(elements.name, "wc", elements.wc_students, i))
         i += 1
-    i =1
+    i = 1
     for pr in range(int(elements.pr)):
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, i))
         i += 1
@@ -44,9 +36,9 @@ for elements in courses:
 # i = 0
 # for elements in lessons:
 #     print lessons[i].name
+#     print lessons[i].group_name
 #     print lessons[i].sort
-#     print lessons[i].students
-#     print lessons[i].group
+#     print lessons[i].amount
 #     i += 1
 
 # open the student file to make student objects
@@ -62,3 +54,26 @@ with open("studenten.csv", "rb") as file2:
 #     print students[i].id
 #     print students[i].vak1
 #     i += 1
+
+big_list = []
+rest = []
+for lesson in lessons:
+    if int(lesson.amount) > 43:
+        big_list.append(lesson)
+    else:
+        rest.append(lesson)
+
+lessons = []
+lessons = big_list + rest
+
+
+room1 = Room('C0.110', 117)
+room2 = Room('C1.112', 60)
+room3 = Room('A1.10', 56)
+room4 = Room('B0.201', 48)
+room5 = Room('A10.4', 41)
+room6 = Room('A1.06', 22)
+room7 = Room('A1.08', 20)
+
+room_list = {0 : room1, 1 : room2, 2 : room3, 3 : room4,
+            4 : room5, 5 : room6, 6 : room7}

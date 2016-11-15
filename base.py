@@ -9,11 +9,14 @@ class Courses(object):
         self.students = students
 
 class Lessons(object):
-    def __init__(self, name, sort, students, group):
+    def __init__(self, name, group_name, amount, sort):
         self.name = name
+        self.group_name = group_name
         self.sort = sort
-        self.students = students
-        self.group = group
+        self.amount = amount
+        #self.group_stud = group_stud
+    # def info():
+    #     print self.name
 
 
 class Students(object):
@@ -24,3 +27,9 @@ class Students(object):
         self.vak3 = vak3
         self.vak4 = vak4
         self.vak5 = vak5
+
+class Room(object):
+    def __init__(self, name, seats):
+        self.name = name
+        self.seats = seats
+    
