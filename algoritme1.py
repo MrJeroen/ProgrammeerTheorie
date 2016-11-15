@@ -9,7 +9,7 @@ def shuffle(list, start, stop):
         i += 1
 
 shuffle(lessons, 0, 20)
-shuffle(lessons, 21, 128)
+shuffle(lessons, 21, 140)
 
 # i = 0
 # for elements in lessons:

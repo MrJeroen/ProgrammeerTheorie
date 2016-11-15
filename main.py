@@ -66,7 +66,6 @@ for lesson in lessons:
 lessons = []
 lessons = big_list + rest
 
-
 room1 = Room('C0.110', 117)
 room2 = Room('C1.112', 60)
 room3 = Room('A1.10', 56)

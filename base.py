@@ -18,7 +18,6 @@ class Lessons(object):
     # def info():
     #     print self.name
 
-
 class Students(object):
     def __init__(self, id, vak1, vak2, vak3, vak4, vak5):
         self.id = id
@@ -32,4 +31,3 @@ class Room(object):
     def __init__(self, name, seats):
         self.name = name
         self.seats = seats
-    

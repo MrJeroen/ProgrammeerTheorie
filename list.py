@@ -2,8 +2,8 @@ import numpy as np
 import csv
 import itertools
 from base import Courses, Students, Lessons
-from main import courses, students, room_list
-from algoritme1 import lessons
+from main import courses, students, room_list, lessons
+#from algoritme1 import lessons
 
 # Create dimensions for numpy array
 dagen = 5
@@ -40,4 +40,4 @@ for elements in lessons:
         # Next room
         room += 1
 
-# print array
+#print array
