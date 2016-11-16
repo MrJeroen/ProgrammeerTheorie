@@ -4,6 +4,7 @@ from base import Courses, Students, Lessons, Room
 courses = []
 lessons = []
 students = []
+
 # open the file courses to fill the Courses object
 with open("vakken.csv", "rb") as file1:
     reader_vak = csv.reader(file1, delimiter=",")
@@ -15,7 +16,8 @@ with open("vakken.csv", "rb") as file1:
 # for elements in courses:
 #     print courses[i].name
 #     print courses[i].hc
-#     print courses[i].students
+#     print courses[i].wc
+#     print courses[i].pr
 #     i += 1
 
 # create a new list of objects from the list of course objects
@@ -32,7 +34,7 @@ for elements in courses:
     for pr in range(int(elements.pr)):
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, i))
         i += 1
-
+#
 # i = 0
 # for elements in lessons:
 #     print lessons[i].name

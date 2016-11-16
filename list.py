@@ -33,11 +33,8 @@ for elements in lessons:
                 array[day][time][room] = (room_list[room], lessons[traverser])
                 # Next element in list
                 traverser += 1
-                # Next timeslot
                 time += 1
-            # Next day
             day += 1
-        # Next room
         room += 1
 
-#print array
+# print array

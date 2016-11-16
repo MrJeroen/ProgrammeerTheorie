@@ -8,6 +8,21 @@ class Courses(object):
         self.pr_students = pr_students
         self.students = students
 
+    def totaal_activiteiten(self):
+         total = int(self.hc) + int(self.wc) + int(self.pr)
+         return total
+
+    def type_activiteit(self):
+        if int(self.hc) > 0:
+            harry = 'hc'
+            return harry
+        if int(self.wc) > 0:
+            hagrid = 'wc'
+            return hagrid
+        if int(self.pr) > 0:
+            ron = 'pr'
+            return ron
+
 class Lessons(object):
     def __init__(self, name, group_name, amount, sort):
         self.name = name
