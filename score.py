@@ -3,8 +3,7 @@ import csv
 import itertools
 from base import *
 from main import courses, students, room_list
-# from algoritme1 import lessons
-from list import *
+from list import array
 from collections import Counter
 
 
@@ -20,28 +19,19 @@ for i in range(7):
             if int(array[j][k][i][0].seats) < int(array[j][k][i][1].amount):
                 score += (int(array[j][k][i][0].seats) - int(array[j][k][i][1].amount))
 
-for vakken in students:
+for ids in students:
     overlap = []
     for room in range(7):
         days = 0
         for days in range(5):
             time = 0
             for time in range(4):
-                # Get first element of object.lessong
-                if vakken.vak1 == array[days][time][room][1].name:
-                    overlap.append((time, days))
-                if vakken.vak2 == array[days][time][room][1].name:
-                    overlap.append((time, days))
-                if vakken.vak3 == array[days][time][room][1].name:
-                    overlap.append((time, days))
-                if vakken.vak4 == array[days][time][room][1].name:
-                    overlap.append((time, days))
-                if vakken.vak5 == array[days][time][room][1].name:
+                if ids.id in array[days][time][room][1].students:
                     overlap.append((time, days))
     something = [[x,overlap.count(x)] for x in set(overlap)]
     for elements in something:
         if elements[1] > 1:
-            score -= elements[1]
+            score -= elements[1] - 1
 
 # Set counters
 day = 0
@@ -86,7 +76,7 @@ for elements in (courses):
                         if array[day][time][room][1].group_name == pr:
                                 verdeling.append(day)
 
-    print verdeling
+    #sprint verdeling
     # Count the total extra occurences of a given name
     check = len(Counter(verdeling).values())
     # print check
