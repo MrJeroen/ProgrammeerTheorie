@@ -1,5 +1,5 @@
 class Courses(object):
-    def __init__(self, name, hc, wc, wc_students, pr, pr_students, students):
+    def __init__(self, name, hc, wc, wc_students, pr, pr_students, students, student_numbers):
         self.name = name
         self.hc = hc
         self.wc = wc
@@ -7,11 +7,10 @@ class Courses(object):
         self.pr = pr
         self.pr_students = pr_students
         self.students = students
-
+        self.student_numbers = student_numbers
     def totaal_activiteiten(self):
-         total = int(self.hc) + int(self.wc) + int(self.pr)
-         return total
-
+        total = int(self.hc) + int(self.wc) + int(self.pr)
+        return total
     def type_activiteit(self):
         if int(self.hc) > 0:
             harry = 'hc'
@@ -24,14 +23,12 @@ class Courses(object):
             return ron
 
 class Lessons(object):
-    def __init__(self, name, group_name, amount, sort):
+    def __init__(self, name, group_name, amount, sort, students):
         self.name = name
         self.group_name = group_name
-        self.sort = sort
         self.amount = amount
-        #self.group_stud = group_stud
-    # def info():
-    #     print self.name
+        self.sort = sort
+        self.students = students
 
 class Students(object):
     def __init__(self, id, vak1, vak2, vak3, vak4, vak5):
