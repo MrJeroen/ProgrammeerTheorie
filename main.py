@@ -2,8 +2,6 @@ import csv
 from base import Courses, Students, Lessons, Room
 
 courses = []
-lessons = []
-students = []
 vak = [3, 4, 5, 6, 7]
 # open the file courses to fill the Courses object
 with open("vakken.csv", "rb") as file1:
@@ -28,7 +26,7 @@ with open("vakken.csv", "rb") as file1:
 #     print elements.students
 #     print len(elements.student_numbers)
 
-
+lessons = []
 # create a new list of objects from the list of course objects
 for elements in courses:
     i = 1
@@ -62,6 +60,17 @@ for elements in courses:
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, i, student_numbers))
         i += 1
 
+big_list = []
+rest = []
+for lesson in lessons:
+    if int(lesson.amount) > 43:
+        big_list.append(lesson)
+    else:
+        rest.append(lesson)
+
+lessons = []
+lessons = big_list + rest
+
 # for elements in lessons:
 #     print elements.name
 #     print elements.group_name
@@ -69,6 +78,7 @@ for elements in courses:
 #     print elements.amount
 #     print elements.students
 
+students = []
 # open the student file to make student objects
 with open("studenten.csv", "rb") as file2:
     reader_stud = csv.reader(file2, delimiter=",")
@@ -81,16 +91,6 @@ with open("studenten.csv", "rb") as file2:
 #     print elementss.id
 #     print elements.vak1
 
-big_list = []
-rest = []
-for lesson in lessons:
-    if int(lesson.amount) > 43:
-        big_list.append(lesson)
-    else:
-        rest.append(lesson)
-
-lessons = []
-lessons = big_list + rest
 
 room1 = Room('C0.110', 117)
 room2 = Room('C1.112', 60)
