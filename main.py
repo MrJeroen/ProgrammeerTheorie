@@ -4,44 +4,70 @@ from base import Courses, Students, Lessons, Room
 courses = []
 lessons = []
 students = []
-
+vak = [3, 4, 5, 6, 7]
 # open the file courses to fill the Courses object
 with open("vakken.csv", "rb") as file1:
     reader_vak = csv.reader(file1, delimiter=",")
     for vakken in reader_vak:
+        # create an array for all the students in one course
+        course_students = []
+        with open("studenten.csv", "rb") as file2:
+            reader_stud = csv.reader(file2, delimiter=",")
+            for student in reader_stud:
+                # is students attened a course add them to the array
+                for verschillende in vak:
+                    if vakken[0] in student[verschillende]:
+                        course_students.append(student[2])
         # fill the courses array with courses objects
         courses.append(Courses(vakken[0], vakken[1], vakken[2],
-        vakken[3], vakken[4], vakken[5], vakken[6]))
-# i = 0
+        vakken[3], vakken[4], vakken[5], vakken[6], course_students))
+
 # for elements in courses:
-#     print courses[i].name
-#     print courses[i].hc
-#     print courses[i].wc
-#     print courses[i].pr
-#     i += 1
+#     print elements.total()
+#     print elements.hc
+#     print elements.students
+#     print len(elements.student_numbers)
+
 
 # create a new list of objects from the list of course objects
 for elements in courses:
     i = 1
     for hc in range(int(elements.hc)):
-        lessons.append(Lessons(elements.name, "hc", elements.students, i))
+        lessons.append(Lessons(elements.name, "hc", elements.students, i, elements.student_numbers))
         i += 1
     i = 1
+    student_numbers = []
     for wc in range(int(elements.wc)):
-        lessons.append(Lessons(elements.name, "wc", elements.wc_students, i))
+        if i == 1:
+            student_numbers = elements.student_numbers[:int(elements.wc_students)]
+        if i == 2:
+            student_numbers = elements.student_numbers[int(elements.wc_students): 2 * int(elements.wc_students)]
+        if i == 3:
+            student_numbers = elements.student_numbers[2 * int(elements.wc_students): 3 * int(elements.wc_students)]
+        if i == 4:
+            student_numbers = elements.student_numbers[3 * int(elements.wc_students):]
+        lessons.append(Lessons(elements.name, "wc", elements.wc_students, i, student_numbers))
         i += 1
     i = 1
+    student_numbers = []
     for pr in range(int(elements.pr)):
-        lessons.append(Lessons(elements.name, "pr", elements.pr_students, i))
+        if i == 1:
+            student_numbers = elements.student_numbers[:int(elements.pr_students)]
+        if i == 2:
+            student_numbers = elements.student_numbers[int(elements.pr_students): 2 * int(elements.pr_students)]
+        if i == 3:
+            student_numbers = elements.student_numbers[2 * int(elements.pr_students): 3 * int(elements.pr_students)]
+        if i == 4:
+            student_numbers = elements.student_numbers[3 * int(elements.pr_students):]
+        lessons.append(Lessons(elements.name, "pr", elements.pr_students, i, student_numbers))
         i += 1
-#
-# i = 0
+
 # for elements in lessons:
-#     print lessons[i].name
-#     print lessons[i].group_name
-#     print lessons[i].sort
-#     print lessons[i].amount
-#     i += 1
+#     print elements.name
+#     print elements.group_name
+#     print elements.sort
+#     print elements.amount
+#     print elements.students
 
 # open the student file to make student objects
 with open("studenten.csv", "rb") as file2:
@@ -51,11 +77,9 @@ with open("studenten.csv", "rb") as file2:
             students.append(Students(student[2], student[3], student[4],
             student[5], student[6], student[7]))
 
-# i = 0
 # for elements in students:
-#     print students[i].id
-#     print students[i].vak1
-#     i += 1
+#     print elementss.id
+#     print elements.vak1
 
 big_list = []
 rest = []
