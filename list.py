@@ -40,6 +40,7 @@ def Array(lessons):
             room += 1
     return array
 
+# print Array(lessons)
 # for i in range(2):
 #     lessons = ShuffledList(lessons)
 #     print Array(lessons)

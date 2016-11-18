@@ -21,8 +21,10 @@ with open("vakken.csv", "rb") as file1:
         vakken[3], vakken[4], vakken[5], vakken[6], course_students))
 
 # for elements in courses:
-#     print elements.total()
+#     # print elements.total()
 #     print elements.hc
+#     print elements.wc
+#     print elements.pr
 #     print elements.students
 #     print len(elements.student_numbers)
 
@@ -76,7 +78,7 @@ lessons = big_list + rest
 #     print elements.group_name
 #     print elements.sort
 #     print elements.amount
-#     print elements.students
+#     # print elements.students
 
 students = []
 # open the student file to make student objects
@@ -90,7 +92,6 @@ with open("studenten.csv", "rb") as file2:
 # for elements in students:
 #     print elementss.id
 #     print elements.vak1
-
 
 room1 = Room('C0.110', 117)
 room2 = Room('C1.112', 60)
