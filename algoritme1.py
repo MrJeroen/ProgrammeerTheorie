@@ -1,7 +1,6 @@
 import random
 from main import lessons
 
-
 def shuffle(list, start, stop):
     # Get set value
     i = start

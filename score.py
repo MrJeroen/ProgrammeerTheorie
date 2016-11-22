@@ -143,20 +143,20 @@ array1 = Array(lessons)
 # print Array(lessons)
 print Score(array1)
 
-# for i in range(1):
-#     # Put list lessons from main.py in the shuffle function of algoritme1
-#     lessons1 = ShuffledList(lessons)
-#     # put the shuffled list in to the Array function from list.py
-#     array1 = Array(lessons1)
-#     # put the array in to the score function
-#     list_return.append(Score(array1))
-#
-#     if Score(array1) > list_highest[0]:
-#         list_highest.insert(0, (Score(array1)))
-#         array2 = array1
-#     # print i
-#     print Score(array1)
+for i in range(100):
+    # Put list lessons from main.py in the shuffle function of algoritme1
+    lessons1 = ShuffledList(lessons)
+    # put the shuffled list in to the Array function from list.py
+    array1 = Array(lessons1)
+    # put the array in to the score function
+    list_return.append(Score(array1))
 
-# print list_return
-# print list_highest
-# # print array2
+    if Score(array1) > list_highest[0]:
+        list_highest.insert(0, (Score(array1)))
+        array2 = array1
+    # print i
+    print Score(array1)
+
+print list_return
+print list_highest
+print array2

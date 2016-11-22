@@ -40,7 +40,7 @@ for elements in lessons:
         # Next room
         room += 1
 
-print array
-print day
-print time
-print room
+# print array
+# print day
+# print time
+# print room
