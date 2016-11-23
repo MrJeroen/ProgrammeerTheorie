@@ -3,8 +3,6 @@ import csv
 import itertools
 from base import Courses, Students, Lessons
 from main import courses, students, room_list, lessons
-from algoritme1 import ShuffledList
-
 
 def Array(lessons):
     # Create dimensions for numpy array
@@ -39,8 +37,3 @@ def Array(lessons):
                 day += 1
             room += 1
     return array
-
-# print Array(lessons)
-# for i in range(2):
-#     lessons = ShuffledList(lessons)
-#     print Array(lessons)
