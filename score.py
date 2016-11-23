@@ -132,4 +132,49 @@ def Score(array):
             # print 'pr', pr_count
             # print 'overlap', overlap_count
 
+    for vak in courses:
+        # Compare students course with courses
+        if vak.totaal_activiteiten() >= 2 and vak.totaal_activiteiten() <= 4:
+            # print vak.name
+            # Set counters
+            monday = 0
+            tuesday =  0
+            wednesday = 0
+            thursday = 0
+            friday = 0
+            room = 0
+            # Traverse array
+            while room < 7:
+                day = 0
+                while day < 5:
+                    time = 0
+                    while time < 4:
+                        # If course matches in array
+                        if vak.name == array[day][time][room][1].name:
+                            if day == 0:
+                                monday = 1
+                            elif day == 1:
+                                tuesday = 1
+                            elif day == 2:
+                                wednesday = 1
+                            elif day == 3:
+                                thursday = 1
+                            elif day == 4:
+                                friday = 1
+                        time += 1
+                    day += 1
+                room += 1
+
+        if vak.totaal_activiteiten() == 2:
+            if monday == 1 and thursday == 1:
+                score += 20
+            elif tuesday == 1 and friday == 1:
+                score += 20
+        elif vak.totaal_activiteiten() == 3:
+            if monday == 1 and wednesday == 1 and friday == 1:
+                score += 20
+        elif vak.totaal_activiteiten() == 4:
+            if monday == 1 and tuesday == 1 and thursday == 1 and friday == 1:
+                score += 20
+
     return score
