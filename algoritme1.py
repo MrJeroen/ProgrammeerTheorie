@@ -41,13 +41,14 @@ for i in range(100):
     list_return.append(Score(array1))
     print Score(array1)
 
-    if Score(array1) > list_highest[0]:
-        # list_highest.insert({ i :0, (Score(array1))})
-        list_highest.insert(0, (Score(array1)))
-        array2 = array1
-        # print Score(array1)
+    # if Score(array1) > list_highest[0]:
+    #     # list_highest.insert({ i :0, (Score(array1))})
+    #     list_highest.insert(0, (Score(array1)))
+    #     array2 = array1
+    #     # print Score(array1)
+    #     print Score(array1)
 
-print list_return
-print list_highest
-Plot(list_return)
+# print list_return
+# print list_highest
+# Plot(list_return)
 # print array2
