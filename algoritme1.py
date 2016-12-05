@@ -10,7 +10,7 @@ list_highest = [-500]
 def shuffle(list, start, stop):
     # Get set value
     i = start
-    while (i < stop  -1):
+    while (i < stop  - 1):
         # Get random integer
         random_integer = random.randrange(i, stop)
         # Switch places in list
@@ -32,23 +32,19 @@ def ShuffledList(lessons):
 #     print lessons[i].name
 #     i += 1
 
-for i in range(100):
-# Put list lessons from main.py in the shuffle function of algoritme1
-    lessons1 = ShuffledList(lessons)
-    # put the shuffled list in to the Array function from list.py
-    array1 = Array(lessons)
-    # put the array in to the score function
-    list_return.append(Score(array1))
-    print Score(array1)
 
-    # if Score(array1) > list_highest[0]:
-    #     # list_highest.insert({ i :0, (Score(array1))})
-    #     list_highest.insert(0, (Score(array1)))
-    #     array2 = array1
-    #     # print Score(array1)
-    #     print Score(array1)
+for i in range(1000):
+    new_list = ShuffledList(lessons)
+    new_array = Array(lessons)
+    score = Score(new_array)
+    list_return.append(score)
+    print score
 
-# print list_return
-# print list_highest
-# Plot(list_return)
+    if score > list_highest[0]:
+        list_highest.insert(0, (score))
+        # array2 = array1
+
+print list_return
+print list_highest
+Plot(list_return)
 # print array2
