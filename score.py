@@ -51,22 +51,8 @@ def Score(array):
                 time = 0
                 for time in range(4):
 
-                    # if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
-                    #     score += int([day][time][room][0].seats) - int(array[day][time][room][1].amount)
-                    #     print 'hi'
-
-                    seats = int(array[day][time][room][0].seats)
-                    print '1'
-                    print seats
-                    amount = int(array[day][time][room][1].amount)
-                    print '2'
-                    print amount
-
-                    if seats < amount:
-                        score -= (amount - seats)
-                        print '3'
-                        # print score
-
+                    if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
+                        score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
 
                     if vak.name == array[day][time][room][1].name:
                         if array[day][time][room][1].group_name == 'hc':

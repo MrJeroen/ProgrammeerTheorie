@@ -2,7 +2,6 @@ import random
 from main import lessons
 from list import Array
 from score import Score
-from plot import Plot
 
 def shuffle(list, start, stop):
     # Get set value
@@ -15,8 +14,9 @@ def shuffle(list, start, stop):
         i += 1
 
 def ShuffledList(lessons):
-    shuffle(lessons, 0, 20)
-    shuffle(lessons, 21, 139)
+    shuffle(lessons, 0, 19)
+    shuffle(lessons, 20, 59)
+    shuffle(lessons, 60, 139)
     return lessons
 
 def hillclimber(list, start, end):
@@ -45,7 +45,6 @@ highestpoint = []
 for i in range(100):
     new_list = hillclimber(best_list, 58, 139)
     new_score = score(new_list)
-    print score(new_list)
     if new_score > best_score:
         best_list = new_list
         best_score = score(best_list)
@@ -58,5 +57,5 @@ for i in range(100):
 #         best_score = score(best_list)
 #         highestpoint.append(best_score)
 
+
 print highestpoint
-Plot(highestpoint)
