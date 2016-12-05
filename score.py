@@ -1,8 +1,5 @@
 import numpy as np
-import csv
-from base import *
 from main import courses, students, room_list, lessons
-from list import Array
 import collections
 
 def Score(array):
@@ -24,7 +21,6 @@ def Score(array):
     for day in range(5):
         for time in range(4):
             overlap = []
-            conflict = 0
             for room in range(7):
                 for i in array[day][time][room][1].students:
                     overlap.append(i)
@@ -48,19 +44,29 @@ def Score(array):
             pr_count = 0
             wc_count = 0
 
-            overlap = []
-
             overlap_count = 0
             room = 0
+
             for room in range(7):
                 time = 0
                 for time in range(4):
 
-                    for i in array[day][time][room][1].students:
-                        overlap.append(i)
+                    # if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
+                    #     score += int([day][time][room][0].seats) - int(array[day][time][room][1].amount)
+                    #     print 'hi'
 
-                    if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
-                        score += (int[day][time][room][0].seats) - int(array[day][time][room][1].amount)
+                    seats = int(array[day][time][room][0].seats)
+                    print '1'
+                    print seats
+                    amount = int(array[day][time][room][1].amount)
+                    print '2'
+                    print amount
+
+                    if seats < amount:
+                        score -= (amount - seats)
+                        print '3'
+                        # print score
+
 
                     if vak.name == array[day][time][room][1].name:
                         if array[day][time][room][1].group_name == 'hc':
@@ -83,8 +89,18 @@ def Score(array):
                             elif day == 4:
                                 friday = 1
 
-            # if double in overlap:
-            #     score -= 1
+
+            if vak.totaal_activiteiten() == 2:
+                if monday == 1 and thursday == 1:
+                    score += 20
+                elif tuesday == 1 and friday == 1:
+                    score += 20
+            elif vak.totaal_activiteiten() == 3:
+                if monday == 1 and wednesday == 1 and friday == 1:
+                    score += 20
+            elif vak.totaal_activiteiten() == 4:
+                if monday == 1 and tuesday == 1 and thursday == 1 and friday == 1:
+                    score += 20
 
             if hc_count > 1:
                 overlap_count += (hc_count - 1)
@@ -103,17 +119,5 @@ def Score(array):
                 score -= 20
             elif overlap_count == 1:
                 score -= 10
-
-            if vak.totaal_activiteiten() == 2:
-                if monday == 1 and thursday == 1:
-                    score += 20
-                elif tuesday == 1 and friday == 1:
-                    score += 20
-            elif vak.totaal_activiteiten() == 3:
-                if monday == 1 and wednesday == 1 and friday == 1:
-                    score += 20
-            elif vak.totaal_activiteiten() == 4:
-                if monday == 1 and tuesday == 1 and thursday == 1 and friday == 1:
-                    score += 20
 
     return score
