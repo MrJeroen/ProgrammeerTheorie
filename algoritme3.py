@@ -49,7 +49,7 @@ for i in range(50):
         new_score = score(new_list)
         if new_score > best_score:
             temp_list = new_list
-            best_score = score(best_list)
+            best_score = score(temp_list)
             print best_score
     best_list = temp_list
     highestpoint.append(best_score)
