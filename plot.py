@@ -1,16 +1,22 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plot
+import collections
+import pylab as pl
 
 def Plot(list2):
-    plt.axis([0, 30, 50, 1000])
-    plt.ylabel('Score')
-    plt.xlabel('Iterations')
+    counter = collections.Counter(list2)
 
-    j = 0
-    for i in list2:
-        plt.scatter(j, i)
-        plt.plot(j, i)
-        j += 1
+    print counter
 
-    plt.grid()
-    plt.show()
+    pl.bar(counter, counter.values())
+
+    plot.title('Algorithm')
+    plot.xlabel('Score')
+    plot.ylabel('Frequency')
+
+    xmax = max(counter.keys()) + 2
+    ymax = max(counter.values()) + 2
+
+    pl.ylim(0, ymax)
+    pl.grid()
+    pl.show()
