@@ -3,9 +3,12 @@ from main import lessons
 from list import Array
 from score import Score
 from plot import Plot
+import pickle
 
 list_return = []
-list_highest = [-500]
+list_highest = [0]
+
+#print lessons[0].students
 
 def shuffle(list, start, stop):
     # Get set value
@@ -32,19 +35,27 @@ def ShuffledList(lessons):
 #     print lessons[i].name
 #     i += 1
 
+all_lists = []
 
-for i in range(1000):
+for i in range(10):
     new_list = ShuffledList(lessons)
     new_array = Array(lessons)
     score = Score(new_array)
     list_return.append(score)
-    print score
+    all_lists.append(new_list)
 
     if score > list_highest[0]:
         list_highest.insert(0, (score))
-        # array2 = array1
+        m = i
+
+best_schedule = all_lists[m]
+
 
 print list_return
 print list_highest
-Plot(list_return)
+
+#Plot(list_return)
 # print array2
+
+with open('list2.py', 'wb') as fp:
+    pickle.dump(best_schedule, fp)

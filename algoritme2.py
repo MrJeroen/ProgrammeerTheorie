@@ -2,6 +2,7 @@ import random
 from main import lessons
 from list import Array
 from score import Score
+import pickle
 
 def shuffle(list, start, stop):
     # Get set value
@@ -31,8 +32,11 @@ def score(list):
     # check the score of this list
     return Score(array1)
 
-best_list = ShuffledList(lessons)
+with open ('bestelijst.py', 'rb') as fp:
+    best_list = pickle.load(fp)
+
 best_score = score(best_list)
+print best_score
 highestpoint = []
 
 # for i in range(100):
@@ -42,9 +46,10 @@ highestpoint = []
 #         best_list = new_list
 #         best_score = score(best_list)
 #         highestpoint.append(best_score)
-for i in range(100):
-    new_list = hillclimber(best_list, 58, 139)
+for i in range(10000):
+    new_list = hillclimber(best_list, 60, 139)
     new_score = score(new_list)
+    print new_score
     if new_score > best_score:
         best_list = new_list
         best_score = score(best_list)
