@@ -59,11 +59,11 @@ for elements in courses:
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, pr, student_numbers))
 
 # for elements in lessons:
-    # print elements.name
-    # print elements.group_name
-    # print elements.amount
-    # print elements.sort
-    # print elements.students
+#     print elements.name
+#     print elements.group_name
+#     print elements.amount
+#     print elements.sort
+#     print elements.students
 
 # 0 - 19
 big_list = []

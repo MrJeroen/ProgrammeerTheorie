@@ -26,12 +26,25 @@ def ShuffledList(lessons):
     return lessons
 
 # Hillclimber Algorithm. Changes 2 positions in a given schedule with each other.
-# The location(s) where these changes are made, are determined by the shuffle
-# function above
-def hillclimber(list, start, end):
-    random_integer1 = random.randrange(start, end)
-    random_integer2 = random.randrange(start, end)
-    list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+# As we are working with 3 lists, a random integer is generated to determine
+# which of the three lists will be changed.
+def hillclimber(list, start1, end1, start2, end2, start3, end3):
+    random_integer = random.randint(1, 3)
+    if random_integer == 1:
+        random_integer1 = random.randrange(start1, end1)
+        random_integer2 = random.randrange(start1, end1)
+        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+
+    if random_integer == 2:
+        random_integer1 = random.randrange(start2, end2)
+        random_integer2 = random.randrange(start2, end2)
+        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+
+    if random_integer == 3:
+        random_integer1 = random.randrange(start3, end3)
+        random_integer2 = random.randrange(start3, end3)
+        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+
     return list
 
 # Annealing Algorithm. Determine if decline in score is (still) acceptable --> still needs more info.

@@ -10,7 +10,7 @@ def Plot(list):
     counter = collections.Counter(list)
 
     pl.bar(counter, counter.values())
-    plot.title('Algorithm')
+    plot.title('Random Algorithm - 1000k')
     plot.xlabel('Score')
     plot.ylabel('Frequency')
 

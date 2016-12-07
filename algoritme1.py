@@ -8,7 +8,7 @@ list_return = []
 list_highest = [0]
 
 # Iterate through the random algorithm 'x' amount of times.
-for i in range(100):
+for i in range(1000000):
     # Get a (new) shuffeled list based on the shuffle method.
     new_list = ShuffledList(lessons)
     # Score this new list.

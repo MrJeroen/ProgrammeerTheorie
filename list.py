@@ -37,3 +37,7 @@ def Array(lessons):
                 day += 1
             room += 1
     return array
+
+# for i in range(1):
+#     array = Array(lessons)
+#     print array

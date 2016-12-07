@@ -8,7 +8,7 @@ list_return = []
 list_highest = [0]
 
 # Open the best schedule provided by algorithm 1.
-with open ('algo3.py', 'rb') as fp:
+with open ('algo1.py', 'rb') as fp:
     best_list = pickle.load(fp)
 
 # Score the best schedule
@@ -19,12 +19,13 @@ print best_score
 for i in range(10):
     # For every iteration, use the hillclimber method 100 times.
     for j in range(1000):
-    # Get a (new) shuffeled list based on the shuffle method.
-        new_list = hillclimber(best_list, 20, 59)
+        # Get a (new) shuffeled list based on the shuffle method.
+        new_list = hillclimber(best_list, 0, 19, 20, 59, 60, 139)
         # Score this new list.
         new_score = score(new_list)
         # Add new score to a list.
         list_return.append(new_score)
+        print new_score
 
         # If the new score is better compared to the previous highest.
         if new_score > best_score:
