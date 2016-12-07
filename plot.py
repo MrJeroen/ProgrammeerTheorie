@@ -3,8 +3,11 @@ import matplotlib.pyplot as plot
 import collections
 import pylab as pl
 
-def Plot(list2):
-    counter = collections.Counter(list2)
+# Plot the results from the algorithm. The input contains a (large) list
+# containing the scores of an 'x' amount of iterations. The title aught
+# to be altered to reflect the amount of iterations and which algorithm.
+def Plot(list):
+    counter = collections.Counter(list)
 
     pl.bar(counter, counter.values())
     plot.title('Algorithm')

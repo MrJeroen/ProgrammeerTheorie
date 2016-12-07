@@ -5,24 +5,33 @@ import collections
 def Score(array):
     score = 1000
 
+    # Determine if students have any overlap on a given time during a given day.
     for day in range(5):
         for time in range(4):
             overlap = []
             for room in range(7):
                 for i in array[day][time][room][1].students:
+                    # Create a big list with all the students during a given timeslot
+                    # for every room.
                     overlap.append(i)
 
+            # Count the total occurrences of a given student number in this list.
             conflict = collections.Counter(overlap).values()
+            # If a student number is counter > 1, change the score.
             for i in conflict:
                 if i > 1:
                     score -= 1
 
+    # To fill the array we added an 'empty course'. As these are just empty
+    # time slots, are not taking into account during scoring.
     for vak in courses[:-1]:
+        # Set counters
         monday = 0
         tuesday =  0
         wednesday = 0
         thursday = 0
         friday = 0
+
         day = 0
         for day in range(5):
             list_hc = []
@@ -38,9 +47,13 @@ def Score(array):
                 time = 0
                 for time in range(4):
 
+                    # If a given number of students exceeds the amount of available seats, substract the
+                    # student surplus.
                     if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
                         score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
 
+                    # Every class (hc, wc, or pr) is stored in our object. Every time one of these
+                    # are encountered, change the counters initialized above.
                     if vak.name == array[day][time][room][1].name:
                         if array[day][time][room][1].group_name == 'hc':
                             list_hc.append(day)
@@ -50,7 +63,10 @@ def Score(array):
                         elif array[day][time][room][1].group_name == 'pr':
                             pr_count = 1
 
+                        #  Determine the total activities of a given course
                         if vak.totaal_activiteiten() >= 2 and vak.totaal_activiteiten() <= 4:
+                            # If a course is encountered on a given day, change counter to Determine
+                            # spread of a given course.
                             if day == 0:
                                 monday = 1
                             elif day == 1:
@@ -62,7 +78,7 @@ def Score(array):
                             elif day == 4:
                                 friday = 1
 
-
+            # Score based on the total spread of a given course.
             if vak.totaal_activiteiten() == 2:
                 if monday == 1 and thursday == 1:
                     score += 20
@@ -75,6 +91,8 @@ def Score(array):
                 if monday == 1 and tuesday == 1 and thursday == 1 and friday == 1:
                     score += 20
 
+            # Score based on the spread of a course. If 3 activities are clustered
+            # on 1 day, points are substracted.
             if hc_count > 1:
                 overlap_count += (hc_count - 1)
             if wc_count == 1 or pr_count == 1:
@@ -85,7 +103,6 @@ def Score(array):
                         overlap_count += 1
                 if wc_count == pr_count:
                     overlap_count += 1
-
             if overlap_count >= 3:
                 score -= 30
             elif overlap_count == 2:

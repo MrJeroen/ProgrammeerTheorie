@@ -3,39 +3,43 @@ from list import Array
 from score import Score
 import random
 
-# Random Algorithm. Randomly shuffles a given list
+# Random Algorithm. Randomly shuffles the largest list by changing random positions
+# in this list. The location of changes are determined with start and stop. E.g.
+# If only the 20th through 60th position need to be changed, this can be inputted
+# in the start and stop variable.
 def shuffle(list, start, stop):
-    # Get set value
     i = start
     while (i < stop  - 1):
-        # Get random integer
         random_integer = random.randrange(i, stop)
-        # Switch places in list
         list[i], list[random_integer] = list[random_integer], list[i]
         i += 1
 
 # Shuffle various lists from main.lessons before implementing a large list
+# Small lists are sorted based on class size. The largest 20 courses are stored
+# in one list and will be placed in the biggest room. The second list contains
+# the middle biggest courses, placed in the 2 middle rooms. The smallest courses
+# are stored in the last list and are placed in the last 4 rooms.
 def ShuffledList(lessons):
     shuffle(lessons, 0, 19)
     shuffle(lessons, 20, 59)
     shuffle(lessons, 60, 139)
     return lessons
 
-# Hillclimber Algorithm. Change 2 positions in a given schedule with each other.
+# Hillclimber Algorithm. Changes 2 positions in a given schedule with each other.
+# The location(s) where these changes are made, are determined by the shuffle
+# function above
 def hillclimber(list, start, end):
     random_integer1 = random.randrange(start, end)
     random_integer2 = random.randrange(start, end)
     list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
     return list
 
-# Annealing Algorithm. Determin if decline in score is (still) acceptable
+# Annealing Algorithm. Determine if decline in score is (still) acceptable --> still needs more info.
 def temp(old, new, t):
     return (2.71828*((new - old)/t)) / 100
 
-# Score a given schedule
+# Every schedule can be scored through this method. See score.py for further
+# details.
 def score(list):
-    # put the shuffled list in to the Array function from list.py
     array = Array(list)
-    # check the score of this list
     return Score(array)
-    
