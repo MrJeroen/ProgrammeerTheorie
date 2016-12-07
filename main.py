@@ -21,9 +21,13 @@ with open("vakken.csv", "rb") as file1:
         vakken[3], vakken[4], vakken[5], vakken[6], course_students))
 
 # for elements in courses:
-#     print elements.total()
+#     print elements.name
 #     print elements.hc
-#     print elements.students
+#     print elements.wc
+#     print elements.wc_students
+#     print elements.pr
+#     print elements.pr_students
+#     print elements.student_numbers
 #     print len(elements.student_numbers)
 
 lessons = []
@@ -54,11 +58,18 @@ for elements in courses:
             student_numbers = elements.student_numbers[3 * int(elements.pr_students):]
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, pr, student_numbers))
 
+# for elements in lessons:
+    # print elements.name
+    # print elements.group_name
+    # print elements.amount
+    # print elements.sort
+    # print elements.students
+
 # 0 - 19
 big_list = []
-# 20 - 56
+# 20 - 59
 medium = []
-# 57 - 139
+# 60 - 139
 small = []
 for lesson in lessons:
     if int(lesson.amount) > 43:
@@ -68,8 +79,6 @@ for lesson in lessons:
         # print lesson.amount
     else:
         small.append(lesson)
-
-
 
 lessons = []
 lessons = big_list + medium + small

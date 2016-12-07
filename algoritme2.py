@@ -1,66 +1,32 @@
-import random
-from main import lessons
-from list import Array
-from score import Score
+from plot import Plot
+from algorithms import *
 import pickle
 
-def shuffle(list, start, stop):
-    # Get set value
-    i = start
-    while (i < stop  -1):
-        # Get random integer
-        random_integer = random.randrange(i, stop)
-        # Switch places in list
-        list[i], list[random_integer] = list[random_integer], list[i]
-        i += 1
+list_return = []
+list_highest = [0]
 
-def ShuffledList(lessons):
-    shuffle(lessons, 0, 19)
-    shuffle(lessons, 20, 59)
-    shuffle(lessons, 60, 139)
-    return lessons
-
-def hillclimber(list, start, end):
-    random_integer1 = random.randrange(start, end)
-    random_integer2 = random.randrange(start, end)
-    list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
-    return list
-
-def score(list):
-    # put the shuffled list in to the Array function from list.py
-    array1 = Array(list)
-    # check the score of this list
-    return Score(array1)
-
-with open ('bestelijst.py', 'rb') as fp:
+with open ('algo1.py', 'rb') as fp:
     best_list = pickle.load(fp)
 
 best_score = score(best_list)
 print best_score
-highestpoint = []
 
-# for i in range(100):
-#     new_list = hillclimber(best_list, 20, 57)
-#     new_score = score(new_list)
-#     if new_score > best_score:
-#         best_list = new_list
-#         best_score = score(best_list)
-#         highestpoint.append(best_score)
-for i in range(10000):
+for i in range(1000):
     new_list = hillclimber(best_list, 60, 139)
     new_score = score(new_list)
-    print new_score
+    list_return.append(new_score)
+
     if new_score > best_score:
-        best_list = new_list
+        all_lists = []
+        list_highest.insert(0, new_score)
+
+        all_lists.append(new_list)
+        best_schedule = new_list
         best_score = score(best_list)
-        highestpoint.append(best_score)
-# for i in range(100):
-#     new_list = hillclimber(best_list, 0, 19)
-#     new_score = score(new_list)
-#     if new_score > best_score:
-#         best_list = new_list
-#         best_score = score(best_list)
-#         highestpoint.append(best_score)
+        print best_score
 
+        with open('algo2.py', 'wb') as fp:
+            pickle.dump(best_schedule, fp)
 
-print highestpoint
+print list_highest
+Plot(list_return)

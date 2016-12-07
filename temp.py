@@ -2,7 +2,7 @@ from list import Array
 from score import Score
 import pickle
 
-with open ('list2.py', 'rb') as fp:
+with open ('algo2.py', 'rb') as fp:
     itemlist = pickle.load(fp)
 
 

@@ -3,6 +3,10 @@ from main import lessons
 from list import Array
 from score import Score
 import random
+from plot import Plot
+
+list_return = []
+list_highest = [0]
 
 def shuffle(list, start, stop):
     # Get set value
@@ -41,14 +45,15 @@ highestpoint = []
 
 
 T = 1.0
-T_min = 0.0001
+T_min = 0.1
 alpha = 0.9
 while T > T_min:
     i = 1
-    while i <= 100:
-        for j in range(500):
+    while i <= 10:
+        for j in range(50):
             new_list = hillclimber(best_list, 60, 139)
             new_score = score(new_list)
+            list_return.append(new_score)
             temperature = temp(best_score, new_score, T)
             if temperature > -0.2:
                 temp_list = new_list
@@ -59,5 +64,5 @@ while T > T_min:
         i += 1
     T = T*alpha
 
-
+Plot(list_return)
 print highestpoint

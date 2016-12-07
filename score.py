@@ -5,19 +5,6 @@ import collections
 def Score(array):
     score = 1000
 
-    # for student in students:
-    #     overlap = []
-    #     for room in range(7):
-    #         for days in range(5):
-    #             for time in range(4):
-    #                 if student.id in array[days][time][room][1].students:
-    #                     overlap.append((time, days))
-    #
-    #     total_overlap = [[x,overlap.count(x)] for x in set(overlap)]
-    #     for elements in total_overlap:
-    #         if elements[1] > 1:
-    #             score -= elements[1] - 1
-
     for day in range(5):
         for time in range(4):
             overlap = []

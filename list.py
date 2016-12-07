@@ -13,11 +13,11 @@ def Array(lessons):
     # Create 3D array containing type objects
     array = np.ndarray((dagen, tijdslot, lokaal), dtype = np.object)
 
-    # Creat counters for upcoming loop
+    # Create counters for upcoming loop
     traverser = 0
     room = 0
 
-    # Iterate through lessons list containing the needed instances
+    # Iterate through lessons list containing the objects
     for elements in lessons:
         # For every room
         while room < 7:
