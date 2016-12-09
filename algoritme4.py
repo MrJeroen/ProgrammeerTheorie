@@ -19,7 +19,7 @@ while T > T_min:
     i = 1
     while i <= 10:
         for j in range(50):
-            new_list = hillclimber(best_list, 60, 139)
+            new_list = hillclimber(best_list, 1, 19, 20, 59, 60, 139)
             new_score = score(new_list)
             list_return.append(new_score)
             temperature = temp(best_score, new_score, T)
