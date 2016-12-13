@@ -31,25 +31,24 @@ def ShuffledList(lessons):
 def hillclimber(list, start1, end1, start2, end2, start3, end3):
     random_integer = random.randint(1, 3)
     if random_integer == 1:
-        random_integer1 = random.randrange(start1, end1)
-        random_integer2 = random.randrange(start1, end1)
-        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+        functie(start1, end1, list)
 
-    if random_integer == 2:
-        random_integer1 = random.randrange(start2, end2)
-        random_integer2 = random.randrange(start2, end2)
-        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+    elif random_integer == 2:
+        functie(start2, end2, list)
 
-    if random_integer == 3:
-        random_integer1 = random.randrange(start3, end3)
-        random_integer2 = random.randrange(start3, end3)
-        list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+    elif random_integer == 3:
+        functie(start3, end3, list)
 
     return list
 
+def functie(start, end, list):
+    random_integer1 = random.randrange(start, end)
+    random_integer2 = random.randrange(start, end)
+    list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
+
 # Annealing Algorithm. Determine if decline in score is (still) acceptable --> still needs more info.
 def temp(old, new, t):
-    return (2.71828*((new - old)/t)) / 100
+    return (((new - old)/t))
 
 # Every schedule can be scored through this method. See score.py for further
 # details.
