@@ -1,66 +1,50 @@
-import random
-from main import lessons
-from list import Array
-from score import Score
+from plot import Plot
+from algorithms import *
 import pickle
 
-def shuffle(list, start, stop):
-    # Get set value
-    i = start
-    while (i < stop  -1):
-        # Get random integer
-        random_integer = random.randrange(i, stop)
-        # Switch places in list
-        list[i], list[random_integer] = list[random_integer], list[i]
-        i += 1
+# list containing every new score of every iteration.
+list_return = []
 
-def ShuffledList(lessons):
-    shuffle(lessons, 0, 19)
-    shuffle(lessons, 20, 59)
-    shuffle(lessons, 60, 139)
-    return lessons
+for i in range(10):
+    # List containing the highest scores that are encountered during iteration.
+    list_highest = [0]
 
-def hillclimber(list, start, end):
-    random_integer1 = random.randrange(start, end)
-    random_integer2 = random.randrange(start, end)
-    list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
-    return list
+    random = ShuffledList(lessons)
+    # Create a file with a random schedule to start the hillclimber.
+    with open('algo1.py', 'wb') as fp:
+        pickle.dump(random, fp)
 
-def score(list):
-    # put the shuffled list in to the Array function from list.py
-    array1 = Array(list)
-    # check the score of this list
-    return Score(array1)
+    # Iterate through the hillclimber algorithm 'x' amount of times.
+    for j in range(200):
 
-with open ('bestelijst.py', 'rb') as fp:
-    best_list = pickle.load(fp)
+        # Open the best schedule provided by algorithm 1.
+        with open ('algo1.py', 'rb') as fp:
+            best_list = pickle.load(fp)
 
-best_score = score(best_list)
-print best_score
-highestpoint = []
-
-# for i in range(100):
-#     new_list = hillclimber(best_list, 20, 57)
-#     new_score = score(new_list)
-#     if new_score > best_score:
-#         best_list = new_list
-#         best_score = score(best_list)
-#         highestpoint.append(best_score)
-for i in range(10000):
-    new_list = hillclimber(best_list, 60, 139)
-    new_score = score(new_list)
-    print new_score
-    if new_score > best_score:
-        best_list = new_list
+        # Score the best schedule.
         best_score = score(best_list)
-        highestpoint.append(best_score)
-# for i in range(100):
-#     new_list = hillclimber(best_list, 0, 19)
-#     new_score = score(new_list)
-#     if new_score > best_score:
-#         best_list = new_list
-#         best_score = score(best_list)
-#         highestpoint.append(best_score)
+        print best_score
+        # Get a (new) shuffeled list based on the shuffle method.
+        new_list = hillclimber(best_list, 0, 19, 20, 59, 60, 139)
+        # Score this new list.
+        new_score = score(new_list)
 
+        # If the new score is better compared to the previous highest.
+        if new_score > best_score:
+            # Store new best score into list.
+            list_highest.insert(0, new_score)
 
-print highestpoint
+            best_schedule = new_list
+            best_list = new_list
+            best_score = score(best_list)
+
+            # Create a file with the best list for future algorithms.
+            with open('algo1.py', 'wb') as fp:
+                pickle.dump(best_schedule, fp)
+
+    # Append the final score of the hillclimber to an overall list.
+    list_return.append(list_highest[0])
+    print list_return
+
+print list_return
+Plot(list_return)
