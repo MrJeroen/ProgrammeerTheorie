@@ -46,10 +46,6 @@ def functie(start, end, list):
     random_integer2 = random.randrange(start, end)
     list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
 
-# Annealing Algorithm. Determine if decline in score is (still) acceptable --> still needs more info.
-def temp(old, new, t):
-    return (((new - old)/t))
-
 # Every schedule can be scored through this method. See score.py for further
 # details.
 def score(list):

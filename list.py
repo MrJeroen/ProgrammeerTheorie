@@ -3,6 +3,7 @@ import csv
 import itertools
 from base import Courses, Students, Lessons
 from main import courses, students, room_list, lessons
+import pickle
 
 def Array(lessons):
     # Create dimensions for numpy array
@@ -31,6 +32,7 @@ def Array(lessons):
                 while time < 4:
                     # Fill array
                     array[day][time][room] = (room_list[room], lessons[traverser])
+                    #(room_list[room].name, room_list[room].seats, lessons[traverser].name, lessons[traverser].amount)
                     # Next element in list
                     traverser += 1
                     time += 1
@@ -38,6 +40,9 @@ def Array(lessons):
             room += 1
     return array
 
+# with open ('algo1.py', 'rb') as fp:
+#     itemlist = pickle.load(fp)
+#
 # for i in range(1):
-#     array = Array(lessons)
+#     array = Array(itemlist)
 #     print array

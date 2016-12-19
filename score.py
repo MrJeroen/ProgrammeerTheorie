@@ -3,9 +3,9 @@ from main import courses, students, room_list, lessons
 import collections
 
 def Score(array):
-    score = 1000
+    score = 1000.0
 
-    # Determine if students have any overlap on a given time during a given day.
+    #Determine if students have any overlap on a given time during a given day.
     # Checked.
     for day in range(5):
         for time in range(4):
@@ -21,6 +21,10 @@ def Score(array):
             for i in conflict:
                 if i > 1:
                     score -= 1
+
+            if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
+                score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
+
 
     # To fill the array we added an 'empty course'. As these are just empty
     # # time slots, are not taking into account during scoring.
@@ -47,12 +51,8 @@ def Score(array):
             for room in range(7):
                 time = 0
                 for time in range(4):
-
                     # If a given number of students exceeds the amount of available seats, substract the
                     # student surplus.
-                    if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
-                        score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
-
                     # Every class (hc, wc, or pr) is stored in our object. Every time one of these
                     # are encountered, change the counters initialized above.
                     if vak.name == array[day][time][room][1].name:
