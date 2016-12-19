@@ -4,19 +4,20 @@ import pickle
 
 # List containing the highest scores that are encountered during iteration.
 list_highest = [0]
+# Create lists to keep track of the score.
 xaxis = []
-extra =[]
+yaxis =[]
 
+# Create a random schedule.
 random = ShuffledList(lessons)
-# Create a file with a random schedule to start the hillclimber.
 with open('algo1.py', 'wb') as fp:
     pickle.dump(random, fp)
 
 # Iterate through the hillclimber algorithm 'x' amount of times.
-for i in range(1, 1000):
+for i in range(1, 1001):
     xaxis.append(i)
-
-    # Open the best schedule provided by algorithm 1.
+    # Open random schedule and make this the base schedule. After the first
+    # run this will be the bests schedule generated from the loop below.
     with open ('algo1.py', 'rb') as fp:
         best_list = pickle.load(fp)
 
@@ -24,7 +25,7 @@ for i in range(1, 1000):
     best_score = score(best_list)
     print best_score
 
-    extra.append(best_score)
+    yaxis.append(best_score)
 
     # Get a (new) shuffeled list based on the shuffle method.
     new_list = hillclimber(best_list, 0, 19, 20, 59, 60, 139)
@@ -40,6 +41,4 @@ for i in range(1, 1000):
         list_highest.insert(0, best_score)
 
 
-Plot2(xaxis, extra, 'Hillclimber')
-
-#Plot(list_return)
+Plot2(xaxis, yaxis, 'Hillclimber')
