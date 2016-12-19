@@ -5,17 +5,17 @@ import pickle
 def temp(old, new):
     return (new - old)/100
 
-# Create a random schedule.
-# random = ShuffledList(lessons)
-# with open('algo5.py', 'wb') as fp:
-#     pickle.dump(random, fp)
+#Create a random schedule.
+random = ShuffledList(lessons)
+with open('algo7.py', 'wb') as fp:
+    pickle.dump(random, fp)
 
 # Create lists to keep track of the score.
 xaxis = []
 yaxis =[]
 
 T = -0.8
-iterations = 1001
+iterations = 10001
 alpha = 0.00125**(1.0/iterations)
 
 # Iterate through the annealing algorithm
@@ -24,7 +24,7 @@ for i in range(1, iterations):
     xaxis.append(i)
     # Open the random schedule and make this the base schedule. After the first
     # run this will be the bests schedule generated from the loop below.
-    with open ('algo5.py', 'rb') as fp:
+    with open ('algo7.py', 'rb') as fp:
         best_list = pickle.load(fp)
 
     # Score the base schedule.
@@ -32,9 +32,9 @@ for i in range(1, iterations):
     print best_score
 
     # Make 'x' changes on the base schedule
-    for i in range(20):
+    for i in range(10):
         # Change two objects in the schedule & score it.
-        new_list = hillclimber(best_list, 0, 19, 20, 59, 60, 139)
+        new_list = hillclimber(best_list, 0, 139, 0, 139, 0, 139)
         new_score = score(new_list)
 
         # Calculate the temperature of the new score.
@@ -47,7 +47,7 @@ for i in range(1, iterations):
                 list_highest.insert(0, new_score)
                 best_list = new_list
                 # Create a file with the best list for the next step.
-                with open('algo5.py', 'wb') as fp:
+                with open('algo7.py', 'wb') as fp:
                     pickle.dump(best_list, fp)
     # Lower the temperature.
     T = T*alpha
