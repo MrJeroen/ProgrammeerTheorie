@@ -11,15 +11,15 @@ yaxis =[]
 
 # Create a random schedule.
 random = ShuffledList(lessons)
-with open('algo5.py', 'wb') as fp:
+with open('algo2.py', 'wb') as fp:
     pickle.dump(random, fp)
 
 # Iterate through the hillclimber algorithm
-for i in range(1, 1001):
+for i in range(1, 10001):
     xaxis.append(i)
     # Open random schedule and make this the base schedule. After the first
     # run this will be the bests schedule generated from the loop below.
-    with open ('algo5.py', 'rb') as fp:
+    with open ('algo2.py', 'rb') as fp:
         best_list = pickle.load(fp)
 
     # Score the base schedule.
@@ -37,7 +37,7 @@ for i in range(1, 1001):
             list_highest.insert(0, new_score)
             best_list = new_list
             # Create a file with the best list for the next step.
-            with open('algo5.py', 'wb') as fp:
+            with open('algo2.py', 'wb') as fp:
                 pickle.dump(best_list, fp)
     # Create list for plot
     yaxis.append(best_score)

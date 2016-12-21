@@ -12,7 +12,7 @@ with open("vakken.csv", "rb") as file1:
         with open("studenten.csv", "rb") as file2:
             reader_stud = csv.reader(file2, delimiter=",")
             for student in reader_stud:
-                # is students attened a course add them to the array
+                # If a student atteneds a course, add them to the array
                 for verschillende in vak:
                     if vakken[0] in student[verschillende]:
                         course_students.append(student[2])
@@ -20,22 +20,15 @@ with open("vakken.csv", "rb") as file1:
         courses.append(Courses(vakken[0], vakken[1], vakken[2],
         vakken[3], vakken[4], vakken[5], vakken[6], course_students))
 
-# for elements in courses:
-#     print elements.name
-#     print elements.hc
-#     print elements.wc
-#     print elements.wc_students
-#     print elements.pr
-#     print elements.pr_students
-#     print elements.student_numbers
-#     print len(elements.student_numbers)
-
-lessons = []
 # create a new list of objects from the list of course objects
+lessons = []
+# Iterate over the list with courses
 for elements in courses:
+    # Create all the "hoorcollege" lessons
     for hc in range(int(elements.hc)):
         lessons.append(Lessons(elements.name, "hc", elements.students, hc, elements.student_numbers))
     student_numbers = []
+    # Create all the "werkcollege" lessons
     for wc in range(int(elements.wc)):
         if wc == 0:
             student_numbers = elements.student_numbers[:int(elements.wc_students)]
@@ -47,6 +40,7 @@ for elements in courses:
             student_numbers = elements.student_numbers[3 * int(elements.wc_students):]
         lessons.append(Lessons(elements.name, "wc", elements.wc_students, wc, student_numbers))
     student_numbers = []
+    # Create all the "practica" lessons
     for pr in range(int(elements.pr)):
         if pr == 0:
             student_numbers = elements.student_numbers[:int(elements.pr_students)]
@@ -58,22 +52,17 @@ for elements in courses:
             student_numbers = elements.student_numbers[3 * int(elements.pr_students):]
         lessons.append(Lessons(elements.name, "pr", elements.pr_students, pr, student_numbers))
 
-# for elements in lessons:
-    # print elements.name
-    # print elements.group_name
-    # print elements.amount
-    # print elements.sort
-    # print elements.students
-
+# Make three smaller lists of the list with lessons based on the amount of
+# students per lesson.
 # 0 - 19
-big_list = []
+big = []
 # 20 - 59
 medium = []
 # 60 - 139
 small = []
 for lesson in lessons:
     if int(lesson.amount) > 43:
-        big_list.append(lesson)
+        big.append(lesson)
     elif 43 >= int(lesson.amount) and int(lesson.amount) > 20:
         medium.append(lesson)
         # print lesson.amount
@@ -81,22 +70,19 @@ for lesson in lessons:
         small.append(lesson)
 
 lessons = []
-lessons = big_list + medium + small
+lessons = big + medium + small
 
+# Create a list of student objects.
 students = []
-# open the student file to make student objects
+# Open the student file to make student objects.
 with open("studenten.csv", "rb") as file2:
     reader_stud = csv.reader(file2, delimiter=",")
     for student in reader_stud:
-        # append the student objects to a student array
+        # Append the student objects to a student array.
             students.append(Students(student[2], student[3], student[4],
             student[5], student[6], student[7]))
 
-# for elements in students:
-#     print elementss.id
-#     print elements.vak1
-
-
+# Create the room objects
 room1 = Room('C0.110', 117)
 room2 = Room('C1.112', 60)
 room3 = Room('A1.10', 56)

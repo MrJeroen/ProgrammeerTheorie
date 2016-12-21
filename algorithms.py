@@ -3,10 +3,10 @@ from list import Array
 from score import Score
 import random
 
-# Random Algorithm. Randomly shuffles the largest list by changing random positions
-# in this list. The location of changes are determined with start and stop. E.g.
-# If only the 20th through 60th position need to be changed, this can be inputted
-# in the start and stop variable.
+# Randomly shuffles a list by changing random positions in this list.
+# Start and stop can deterime if you want to change the whole list,
+# or parts or the list.
+
 def shuffle(list, start, stop):
     i = start
     while (i < stop  - 1):
@@ -25,29 +25,33 @@ def ShuffledList(lessons):
     shuffle(lessons, 60, 139)
     return lessons
 
-# Hillclimber Algorithm. Changes 2 positions in a given schedule with each other.
+# Swaps 2 lessons in a given schedule with each other.
 # As we are working with 3 lists, a random integer is generated to determine
 # which of the three lists will be changed.
 def hillclimber(list, start1, end1, start2, end2, start3, end3):
     random_integer = random.randint(1, 3)
     if random_integer == 1:
-        functie(start1, end1, list)
+        part_hillclimber(start1, end1, list)
 
     elif random_integer == 2:
-        functie(start2, end2, list)
+        part_hillclimber(start2, end2, list)
 
     elif random_integer == 3:
-        functie(start3, end3, list)
+        part_hillclimber(start3, end3, list)
 
     return list
 
-def functie(start, end, list):
+# Makes the swap in the randomly choosen list.
+def part_hillclimber(start, end, list):
     random_integer1 = random.randrange(start, end)
     random_integer2 = random.randrange(start, end)
     list[random_integer1], list[random_integer2] = list[random_integer2], list[random_integer1]
 
-# Every schedule can be scored through this method. See score.py for further
-# details.
+# calculate the difference between new and old score for annealing
+def temp(old, new):
+    return (old - new)
+
+# Every schedule can be scored through this method. See score.py for further details.
 def score(list):
     array = Array(list)
     return Score(array)
