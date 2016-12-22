@@ -83,13 +83,13 @@ with open("studenten.csv", "rb") as file2:
             student[5], student[6], student[7]))
 
 # Create the room objects
-room1 = Room('C0.110', 117)
-room2 = Room('C1.112', 60)
-room3 = Room('A1.10', 56)
-room4 = Room('B0.201', 48)
-room5 = Room('A10.4', 41)
-room6 = Room('A1.06', 22)
-room7 = Room('A1.08', 20)
+room1 = Room('C0.110', 117, 0, 0.0)
+room2 = Room('C1.112', 60, 0, 0.0)
+room3 = Room('A1.10', 56, 0, 0.0)
+room4 = Room('B0.201', 48, 0, 0.0)
+room5 = Room('A10.4', 41, 0, 0.0)
+room6 = Room('A1.06', 22, 0, 0.0)
+room7 = Room('A1.08', 20, 0, 0.0)
 
 room_list = {0 : room1, 1 : room2, 2 : room3, 3 : room4,
             4 : room5, 5 : room6, 6 : room7}

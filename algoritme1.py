@@ -4,9 +4,10 @@ import pickle
 
 # list containing every new score of every iteration.
 score_list = []
+length = 10
 
 # Iterate through the random algorithm 'x' amount of times.
-for i in range(100):
+for i in range(length):
     # Get a (new) shuffeled list based on the shuffle method.
     new_list = ShuffledList(lessons)
     # Score this new list.

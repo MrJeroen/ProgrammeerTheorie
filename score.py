@@ -10,6 +10,13 @@ def Score(array):
         for time in range(4):
             overlap = []
             for room in range(7):
+                
+                room_list[room].seat_occ += int(array[day][time][room][1].amount)
+                # Checks whether there are too many students considering the amount of seats in a room.
+                if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
+                    # students - seats will be subtracted from the score.
+                    score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
+
                 for i in array[day][time][room][1].students:
                     # Create a big list with all the students during a given timeslot for each room.
                     overlap.append(i)
@@ -20,11 +27,6 @@ def Score(array):
             for i in conflict:
                 if i > 1:
                     score -= 1
-
-            # Checks whether there are too many students considering the amount of seats in a room.
-            if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
-                # students - seats will be subtracted from the score.
-                score -= int(array[day][time][room][1].amount) - int(array[day][time][room][0].seats)
 
 
     # To fill the array we added an 'empty course'. As these are just empty

@@ -31,6 +31,8 @@ class Students(object):
         self.vak5 = vak5
 
 class Room(object):
-    def __init__(self, name, seats):
+    def __init__(self, name, seats, occupation, seat_occ):
         self.name = name
         self.seats = seats
+        self.seat_occ = seat_occ
+        self.occupation = occupation

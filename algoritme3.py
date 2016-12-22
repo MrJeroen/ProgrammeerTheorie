@@ -1,9 +1,10 @@
 from plot2 import Plot2
+from plot3 import Plot3
 from algorithms import *
 import pickle
 
 # List containing the highest scores that are encountered during iteration.
-list_highest = [0]
+list_highest = [-500]
 
 # create lists for plotting.
 xaxis = []
@@ -29,7 +30,7 @@ for i in range(1, 10001):
     # Make 'x' changes on the base schedule
     for j in range(10):
         # Change two objects in the schedule & score it.
-        new_list = hillclimber(best_list, 0, 19, 20, 59, 60, 139)
+        new_list = hillclimber(best_list, 0, 139, 0, 139, 0, 139)
         new_score = score(new_list)
 
         # If a schedule is improved, save it

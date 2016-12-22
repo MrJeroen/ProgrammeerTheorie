@@ -32,9 +32,14 @@ def Array(lessons):
                 while time < 4:
                     # Fill array
                     array[day][time][room] = (room_list[room], lessons[traverser])
+                    if lessons[traverser].name == "empty":
+                        room_list[room].occupation += 1
                     # Next element in list
                     traverser += 1
                     time += 1
                 day += 1
             room += 1
     return array
+
+# print Array(lessons)
+# print room_list[6].occupation

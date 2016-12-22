@@ -20,9 +20,9 @@ def shuffle(list, start, stop):
 # the middle biggest courses, placed in the 2 middle rooms. The smallest courses
 # are stored in the last list and are placed in the last 4 rooms.
 def ShuffledList(lessons):
-    shuffle(lessons, 0, 19)
-    shuffle(lessons, 20, 59)
-    shuffle(lessons, 60, 139)
+    shuffle(lessons, 0, 139)
+    # shuffle(lessons, 20, 59)
+    # shuffle(lessons, 60, 139)
     return lessons
 
 # Swaps 2 lessons in a given schedule with each other.
@@ -49,7 +49,7 @@ def part_hillclimber(start, end, list):
 
 # calculate the difference between new and old score for annealing
 def temp(old, new):
-    return (old - new)
+        return (old - new)
 
 # Every schedule can be scored through this method. See score.py for further details.
 def score(list):

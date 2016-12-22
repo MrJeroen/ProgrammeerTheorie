@@ -8,6 +8,7 @@ list_highest = [0]
 xaxis = []
 yaxis =[]
 
+
 # Create a random schedule.
 random = ShuffledList(lessons)
 with open('algo1.py', 'wb') as fp:
@@ -22,6 +23,7 @@ for i in range(1, 101):
         best_list = pickle.load(fp)
 
     # Score the best schedule.
+    print best_list
     best_score = score(best_list)
     print best_score
 
@@ -39,6 +41,5 @@ for i in range(1, 101):
             pickle.dump(new_list, fp)
         # Store new best score into list.
         list_highest.insert(0, best_score)
-
 
 Plot2(xaxis, yaxis, 'Hillclimber')
