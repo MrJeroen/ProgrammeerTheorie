@@ -13,7 +13,7 @@ xaxis = []
 yaxis =[]
 
 temperature = 80
-iterations = 10001
+iterations = 1001
 alpha = 0.000125**(1.0/iterations)
 
 # Iterate through the annealing algorithm

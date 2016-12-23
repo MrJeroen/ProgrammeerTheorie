@@ -4,7 +4,7 @@ import pickle
 
 # list containing every new score of every iteration.
 score_list = []
-length = 10
+length = 1000
 
 # Iterate through the random algorithm 'x' amount of times.
 for i in range(length):

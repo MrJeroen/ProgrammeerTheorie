@@ -3,11 +3,11 @@ plotly.tools.set_credentials_file(username='wiesje95', api_key='VmOk5OJ6OVRbGjgC
 import plotly.plotly as py
 import plotly.graph_objs as go
 
-def Plot3(list1, string):
+def Plot3(list, string):
     plotly.offline.plot({
-        "data": [go.Bar(x = ['C0.110','C1.112','A1.10','B0.201','A10.4','A1.06','A1.08'], y = list1)],
+        "data": [go.Bar(x = ['C0.110','C1.112','A1.10','B0.201','A10.4','A1.06','A1.08'], y = list)],
         "layout": go.Layout(
-            title=string,
+            title = string,
             yaxis=dict(
                 title='Percentage',
                 titlefont=dict(

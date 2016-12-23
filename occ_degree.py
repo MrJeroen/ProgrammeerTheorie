@@ -4,20 +4,23 @@ from list import Array
 from score import Score
 from main import room_list
 
-with open ('algo1.py', 'rb') as fp:
+# Open a list is the best schedule.
+with open ('stoch100k3lists.py', 'rb') as fp:
     schedule = pickle.load(fp)
 
 array = Array(schedule)
 score = Score(array)
 
+# Create lists for the y axis of the bar charts.
 occupation_degree = []
 occupation_seats = []
-for rooms in room_list:
-    occupation_degree.append(((20.0 - (room_list[rooms].occupation)) / 20.0) *100)
-    occupation_seats.append(((room_list[rooms].seats - (room_list[rooms].occupation))/ (room_list[rooms].seats*1.0))*100)
-    print room_list[rooms].seats
-    print room_list[rooms].occupation
 
-print occupation_seats
-print occupation_degree
-#Plot3(occupation_degree,"Occupation of classrooms")
+for rooms in room_list:
+    # calculate the values of the y-axis for occupation of seats and timeslots
+    occupation_degree.append(((20.0 - (room_list[rooms].occupation)) / 20.0) *100)
+    occupation_seats.append((((room_list[rooms].seat_occ))/(room_list[rooms].seats*20.0))*100)
+
+# Create a bar chart of the occupation degree of timeslots.
+Plot3(occupation_degree, "Occupation degree of timeslots")
+# Create a bar chart of the occupation degree of seats
+#Plot3(occupation_seats, "Occupation degree of seats")

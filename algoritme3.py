@@ -16,7 +16,7 @@ with open('algo2.py', 'wb') as fp:
     pickle.dump(random, fp)
 
 # Iterate through the hillclimber algorithm
-for i in range(1, 10001):
+for i in range(1, 1001):
     xaxis.append(i)
     # Open random schedule and make this the base schedule. After the first
     # run this will be the bests schedule generated from the loop below.

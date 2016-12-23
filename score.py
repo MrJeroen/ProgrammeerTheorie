@@ -4,14 +4,15 @@ import collections
 
 def Score(array):
     score = 1000.0
-
+    students = 0
     # Determine if students have any overlap on a given time during a given day.
     for day in range(5):
         for time in range(4):
             overlap = []
             for room in range(7):
-                
+
                 room_list[room].seat_occ += int(array[day][time][room][1].amount)
+            
                 # Checks whether there are too many students considering the amount of seats in a room.
                 if int(array[day][time][room][0].seats) < int(array[day][time][room][1].amount):
                     # students - seats will be subtracted from the score.
